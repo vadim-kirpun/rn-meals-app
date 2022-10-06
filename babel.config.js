@@ -8,6 +8,9 @@ module.exports = function (api) {
         {
           alias: {
             '~data': ['./src/data'],
+            '~screens': ['./src/screens'],
+            '~hooks': ['./src/hooks'],
+            '~theme': ['./src/theme'],
           },
           extensions: ['.ts', '.tsx'],
         },

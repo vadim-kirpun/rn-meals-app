@@ -4,7 +4,10 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~data": ["src/data"]
+      "~data": ["src/data"],
+      "~theme": ["src/theme"],
+      "~screens": ["src/screens"],
+      "~hooks": ["src/hooks"]
     }
   }
 }
