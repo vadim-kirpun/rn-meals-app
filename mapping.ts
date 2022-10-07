@@ -11,6 +11,7 @@ const mapping = {
     'text-subtitle-2-font-size': 17,
     'text-subtitle-1-font-family': 'NunitoBold',
     'text-subtitle-2-font-family': 'NunitoBold',
+    'text-caption-1-font-family': 'NunitoMedium',
   },
 };
 
