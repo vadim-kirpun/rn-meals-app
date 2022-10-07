@@ -1,1 +1,2 @@
-export { default as Categories } from './Categories/Categories';
+export { default as Categories } from './Categories';
+export { default as Meals } from './Meals';

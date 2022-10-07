@@ -5,14 +5,23 @@ import { Text } from '@ui-kitten/components';
 
 import { Category } from '~data';
 
-const CategoryTile = ({ title, color }: Category) => (
+interface ICategoryTile extends Category {
+  onPress: () => void;
+}
+
+const CategoryTile = ({ title, color, onPress }: ICategoryTile) => (
   <View style={styles.item}>
     <Pressable
+      onPress={onPress}
       style={({ pressed }) => [{ flex: 1 }, pressed && { opacity: 0.8 }]}
       android_ripple={{ color: 'grey' }}
     >
       <View style={[styles.inner, { backgroundColor: color }]}>
-        <Text category="s1" appearance="alternative">
+        <Text
+          category="h5"
+          appearance="alternative"
+          style={{ textAlign: 'center' }}
+        >
           {title}
         </Text>
       </View>
@@ -34,7 +43,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
