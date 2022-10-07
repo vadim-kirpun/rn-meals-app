@@ -16,7 +16,7 @@ export default function App() {
   return (
     <ApplicationProvider
       {...eva}
-      theme={{ ...eva.dark, ...theme }}
+      theme={{ ...eva.light, ...theme }}
       customMapping={mapping}
     >
       <NavigationContainer>
