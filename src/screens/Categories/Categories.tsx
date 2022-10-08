@@ -7,15 +7,15 @@ import { RootStackScreenProps } from '~nav-types';
 import CategoryTile from './components/CategoryTile';
 
 const Categories = ({ navigation }: RootStackScreenProps<'Categories'>) => {
-  const onCategoryPress = (categoryId: Category['id']) =>
-    navigation.navigate('Meals', { categoryId });
+  const onCategoryPress = ({ id, title }: Category) =>
+    navigation.navigate('Meals', { categoryId: id, categoryTitle: title });
 
   return (
     <FlatList
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <CategoryTile {...item} onPress={() => onCategoryPress(item.id)} />
+        <CategoryTile {...item} onPress={() => onCategoryPress(item)} />
       )}
       numColumns={2}
     />

@@ -22,8 +22,14 @@ const MealItem = (props: Meal) => {
       <TouchableOpacity style={styles.card} activeOpacity={0.8}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
 
-        <View style={styles.info}>
-          <Text category="h5" style={{ marginBottom: 4 }}>
+        <View
+          style={[styles.info, { backgroundColor: theme['color-primary-200'] }]}
+        >
+          <Text
+            category="h5"
+            appearance="alternative"
+            style={{ marginBottom: 4 }}
+          >
             {title}
           </Text>
 
@@ -53,15 +59,14 @@ const MealItem = (props: Meal) => {
 const styles = StyleSheet.create({
   cardContainer: {
     shadowColor: 'black',
-    shadowOpacity: 0.2,
-    shadowRadius: 20,
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
     shadowOffset: { width: 4, height: 4 },
-    backgroundColor: 'white',
     borderRadius: 30,
   },
   card: { borderRadius: 30, overflow: 'hidden' },
   image: { width: '100%', height: 150 },
-  info: { paddingHorizontal: 24, paddingVertical: 16 },
+  info: { paddingHorizontal: 24, paddingTop: 12, paddingBottom: 16 },
 });
 
 export default memo(MealItem);

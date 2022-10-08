@@ -1,6 +1,11 @@
+import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { NavigationContainer } from '@react-navigation/native';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { StatusBar } from 'expo-status-bar';
 
 import { useLoadFonts } from '~hooks';
 
@@ -14,16 +19,21 @@ export default function App() {
   if (!fontsLoaded) return null;
 
   return (
-    <ApplicationProvider
-      {...eva}
-      theme={{ ...eva.light, ...theme }}
-      customMapping={mapping}
-    >
-      <NavigationContainer>
-        <Layout style={{ flex: 1 }} onLayout={onLayoutRootView}>
-          <AppNavigation />
-        </Layout>
-      </NavigationContainer>
-    </ApplicationProvider>
+    <SafeAreaProvider>
+      <ApplicationProvider
+        {...eva}
+        theme={{ ...eva.dark, ...theme }}
+        customMapping={mapping}
+      >
+        <StatusBar style="light" />
+        <IconRegistry icons={EvaIconsPack} />
+
+        <NavigationContainer>
+          <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+            <AppNavigation />
+          </View>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </SafeAreaProvider>
   );
 }
