@@ -55,6 +55,7 @@ const theme = {
   'color-danger-700': '#76093F',
   'color-danger-800': '#5F063B',
   'color-danger-900': '#4F0337',
+  'text-basic-color': '$color-primary-100',
 };
 
 export default theme;

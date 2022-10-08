@@ -7,6 +7,10 @@ export type RootStackParamList = {
     categoryId: string;
     categoryTitle: string;
   };
+  MealDetails: {
+    mealId: string;
+    mealTitle: string;
+  };
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

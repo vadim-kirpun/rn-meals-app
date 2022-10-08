@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import { RootStackScreenProps } from '~nav-types';
 import { MEALS } from '~data';
@@ -15,7 +15,7 @@ const Meals = ({ route }: RootStackScreenProps<'Meals'>) => {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={meals}
         contentContainerStyle={{ padding: 32 }}
@@ -26,11 +26,5 @@ const Meals = ({ route }: RootStackScreenProps<'Meals'>) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default memo(Meals);

@@ -1,25 +1,28 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { Entypo } from '@expo/vector-icons';
 import { Text, useTheme } from '@ui-kitten/components';
+import { useNavigation } from '@react-navigation/native';
 
 import { Meal } from '~data';
+import { MealInfo } from '~components';
 
 const MealItem = (props: Meal) => {
-  const { title, imageUrl, duration, complexity, affordability } = props;
+  const { id, title, imageUrl } = props;
 
+  const navigation = useNavigation();
   const theme = useTheme();
 
-  const info = [
-    { id: 'duration', value: `${duration}m` },
-    { id: 'complexity', value: complexity.toUpperCase() },
-    { id: 'affordability', value: affordability.toUpperCase() },
-  ];
+  const onPress = () =>
+    navigation.navigate('MealDetails', { mealId: id, mealTitle: title });
 
   return (
     <View style={styles.cardContainer}>
-      <TouchableOpacity style={styles.card} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={onPress}
+        activeOpacity={0.8}
+      >
         <Image source={{ uri: imageUrl }} style={styles.image} />
 
         <View
@@ -33,23 +36,7 @@ const MealItem = (props: Meal) => {
             {title}
           </Text>
 
-          <View style={{ flexDirection: 'row' }}>
-            {info.map((el) => (
-              <Fragment key={el.id}>
-                <Text category="c1" appearance="hint">
-                  {el.value}
-                </Text>
-
-                {el.id !== 'affordability' && (
-                  <Entypo
-                    name="dot-single"
-                    size={16}
-                    color={theme['color-basic-700']}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </View>
+          <MealInfo {...props} />
         </View>
       </TouchableOpacity>
     </View>

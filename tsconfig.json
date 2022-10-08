@@ -8,6 +8,7 @@
       "~theme": ["src/theme"],
       "~screens": ["src/screens"],
       "~hooks": ["src/hooks"],
+      "~components": ["src/components"],
       "~nav-types": ["src/navigation/types"]
     }
   }

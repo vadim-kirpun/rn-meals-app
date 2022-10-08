@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from '@ui-kitten/components';
 
-import { Categories, Meals } from '~screens';
+import { Categories, MealDetails, Meals } from '~screens';
 import { RootStackParamList } from '~nav-types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +35,12 @@ const AppNavigation = () => {
         options={({ route }) => ({
           title: `${route.params.categoryTitle} Meals`,
         })}
+      />
+
+      <Stack.Screen
+        name="MealDetails"
+        component={MealDetails}
+        options={({ route }) => ({ title: route.params.mealTitle })}
       />
     </Stack.Navigator>
   );
