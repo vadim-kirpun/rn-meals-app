@@ -1,16 +1,30 @@
-import { memo } from 'react';
+import { memo, useCallback, useLayoutEffect } from 'react';
 import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Text, useStyleSheet } from '@ui-kitten/components';
+import { Text, useStyleSheet, useTheme } from '@ui-kitten/components';
 
 import { RootStackScreenProps } from '~nav-types';
 import { MEALS } from '~data';
-import { List, MealInfo, Subtitle } from '~components';
+import { IconButton, List, MealInfo, Subtitle } from '~components';
 
-const MealDetails = ({ route }: RootStackScreenProps<'MealDetails'>) => {
+const MealDetails = ({
+  route,
+  navigation,
+}: RootStackScreenProps<'MealDetails'>) => {
   const { bottom } = useSafeAreaInsets();
   const styles = useStyleSheet(themedStyles);
+  const theme = useTheme();
+
+  const onFavouritePress = useCallback(() => {}, []);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton name="star-outline" onPress={onFavouritePress} />
+      ),
+    });
+  }, [navigation, onFavouritePress, theme]);
 
   const meal = MEALS.find((el) => el.id === route.params.mealId);
 
