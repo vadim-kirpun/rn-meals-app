@@ -18,9 +18,11 @@ const AppNavigation = () => {
         headerBackTitle: 'Back',
         headerBackTitleStyle: { fontFamily: 'NunitoRegular' },
         contentStyle: { backgroundColor: theme['color-primary-500'] },
-        headerStyle: { backgroundColor: theme['color-primary-700'] },
         headerTintColor: theme['color-primary-100'],
         headerTitleStyle: { fontFamily: 'NunitoBold', fontSize: 19 },
+        headerStyle: { backgroundColor: `${theme['color-primary-700']}80` },
+        headerTransparent: true,
+        headerBlurEffect: 'dark',
       }}
     >
       <Stack.Screen
@@ -40,7 +42,12 @@ const AppNavigation = () => {
       <Stack.Screen
         name="MealDetails"
         component={MealDetails}
-        options={({ route }) => ({ title: route.params.mealTitle })}
+        options={({ route }) => ({
+          title: route.params.mealTitle,
+          headerLargeTitle: true,
+          headerLargeStyle: { backgroundColor: theme['color-primary-700'] },
+          headerLargeTitleStyle: { fontFamily: 'NunitoBold' },
+        })}
       />
     </Stack.Navigator>
   );

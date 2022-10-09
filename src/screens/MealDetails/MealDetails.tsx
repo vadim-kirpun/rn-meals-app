@@ -3,25 +3,30 @@ import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Text, useStyleSheet, useTheme } from '@ui-kitten/components';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 import { RootStackScreenProps } from '~nav-types';
 import { MEALS } from '~data';
 import { IconButton, List, MealInfo, Subtitle } from '~components';
 
-const MealDetails = ({
-  route,
-  navigation,
-}: RootStackScreenProps<'MealDetails'>) => {
+const MealDetails = (props: RootStackScreenProps<'MealDetails'>) => {
+  const { route, navigation } = props;
+
   const { bottom } = useSafeAreaInsets();
   const styles = useStyleSheet(themedStyles);
   const theme = useTheme();
+  const headerHeight = useHeaderHeight();
 
   const onFavouritePress = useCallback(() => {}, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <IconButton name="star-outline" onPress={onFavouritePress} />
+        <IconButton
+          name="star-outline"
+          color="color-warning-300"
+          onPress={onFavouritePress}
+        />
       ),
     });
   }, [navigation, onFavouritePress, theme]);
@@ -31,7 +36,12 @@ const MealDetails = ({
   if (meal == null) return null;
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: bottom }}>
+    <ScrollView
+      contentContainerStyle={{
+        paddingBottom: bottom,
+        paddingTop: headerHeight,
+      }}
+    >
       {/* @ts-expect-error */}
       <Image source={{ uri: meal.imageUrl }} style={styles.image} />
 

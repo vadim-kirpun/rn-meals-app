@@ -5,10 +5,11 @@ import { Icon, useTheme } from '@ui-kitten/components';
 
 interface IIconButton {
   name: string;
+  color: string;
   onPress: () => void;
 }
 
-const IconButton = ({ onPress, name }: IIconButton) => {
+const IconButton = ({ onPress, name, color }: IIconButton) => {
   const theme = useTheme();
   const iconRef = useRef<Icon<any>>(null);
 
@@ -26,7 +27,7 @@ const IconButton = ({ onPress, name }: IIconButton) => {
         name={name}
         ref={iconRef}
         animation="pulse"
-        fill={theme['color-warning-300']}
+        fill={theme[color]}
         style={{ width: 24, height: 24 }}
       />
     </TouchableOpacity>
