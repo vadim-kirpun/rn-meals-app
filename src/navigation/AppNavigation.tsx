@@ -3,8 +3,10 @@ import { memo } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from '@ui-kitten/components';
 
-import { Categories, MealDetails, Meals } from '~screens';
+import { MealDetails, Meals } from '~screens';
 import { RootStackParamList } from '~nav-types';
+
+import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -13,7 +15,6 @@ const AppNavigation = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="Categories"
       screenOptions={{
         headerBackTitle: 'Back',
         headerBackTitleStyle: { fontFamily: 'NunitoRegular' },
@@ -26,9 +27,9 @@ const AppNavigation = () => {
       }}
     >
       <Stack.Screen
-        name="Categories"
-        component={Categories}
-        options={{ title: 'All Categories' }}
+        name="DrawerNavigator"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
