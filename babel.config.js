@@ -12,6 +12,7 @@ module.exports = function (api) {
             '~hooks': ['./src/hooks'],
             '~theme': ['./src/theme'],
             '~components': ['./src/components'],
+            '~store': ['./src/store'],
           },
           extensions: ['.ts', '.tsx'],
         },

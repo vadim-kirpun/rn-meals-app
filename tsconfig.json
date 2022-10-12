@@ -9,7 +9,8 @@
       "~screens": ["src/screens"],
       "~hooks": ["src/hooks"],
       "~components": ["src/components"],
-      "~nav-types": ["src/navigation/types"]
+      "~nav-types": ["src/navigation/types"],
+      "~store": ["src/store"]
     }
   }
 }

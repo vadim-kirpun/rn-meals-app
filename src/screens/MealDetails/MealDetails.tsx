@@ -2,36 +2,47 @@ import { memo, useCallback, useLayoutEffect } from 'react';
 import { View, Image, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Text, useStyleSheet, useTheme } from '@ui-kitten/components';
+import { Text, useStyleSheet } from '@ui-kitten/components';
 import { useHeaderHeight } from '@react-navigation/elements';
+import { useAtom } from 'jotai';
 
-import { RootStackScreenProps } from '~nav-types';
 import { MEALS } from '~data';
+import { RootStackScreenProps } from '~nav-types';
 import { IconButton, List, MealInfo, Subtitle } from '~components';
+import { favoritesAtom } from '~store';
 
 const MealDetails = (props: RootStackScreenProps<'MealDetails'>) => {
   const { route, navigation } = props;
+  const { mealId } = route.params;
+
+  const meal = MEALS.find((el) => el.id === mealId);
 
   const { bottom } = useSafeAreaInsets();
   const styles = useStyleSheet(themedStyles);
-  const theme = useTheme();
   const headerHeight = useHeaderHeight();
 
-  const onFavouritePress = useCallback(() => {}, []);
+  const [favorites, setFavourites] = useAtom(favoritesAtom);
+  const isFavorite = favorites.includes(mealId);
+
+  const onFavouritePress = useCallback(async () => {
+    if (isFavorite) {
+      void setFavourites((prev) => prev.filter((el) => el !== mealId));
+    } else {
+      void setFavourites((prev) => [...prev, mealId]);
+    }
+  }, [isFavorite, mealId, setFavourites]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <IconButton
-          name="star-outline"
+          name={isFavorite ? 'star' : 'star-outline'}
           color="color-warning-300"
           onPress={onFavouritePress}
         />
       ),
     });
-  }, [navigation, onFavouritePress, theme]);
-
-  const meal = MEALS.find((el) => el.id === route.params.mealId);
+  }, [isFavorite, navigation, onFavouritePress]);
 
   if (meal == null) return null;
 

@@ -1,6 +1,7 @@
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { Provider as JotaiProvider } from 'jotai';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,20 +21,22 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ApplicationProvider
-        {...eva}
-        theme={{ ...eva.dark, ...theme }}
-        customMapping={mapping}
-      >
-        <StatusBar style="light" />
-        <IconRegistry icons={EvaIconsPack} />
+      <JotaiProvider>
+        <ApplicationProvider
+          {...eva}
+          theme={{ ...eva.dark, ...theme }}
+          customMapping={mapping}
+        >
+          <StatusBar style="light" />
+          <IconRegistry icons={EvaIconsPack} />
 
-        <NavigationContainer>
-          <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-            <AppNavigation />
-          </View>
-        </NavigationContainer>
-      </ApplicationProvider>
+          <NavigationContainer>
+            <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+              <AppNavigation />
+            </View>
+          </NavigationContainer>
+        </ApplicationProvider>
+      </JotaiProvider>
     </SafeAreaProvider>
   );
 }

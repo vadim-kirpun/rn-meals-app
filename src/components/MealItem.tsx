@@ -5,7 +5,8 @@ import { Text, useTheme } from '@ui-kitten/components';
 import { useNavigation } from '@react-navigation/native';
 
 import { Meal } from '~data';
-import { MealInfo } from '~components';
+
+import MealInfo from './MealInfo';
 
 const MealItem = (props: Meal) => {
   const { id, title, imageUrl } = props;
